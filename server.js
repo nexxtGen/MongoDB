@@ -1,6 +1,7 @@
 const mongoose = require ('mongoose');
 const Schema = mongoose.Schema; // Pobieram główny konstruktor modelu mongoose
 
+mongoose.Promise = global.Promise;
 mongoose.connect('mongodb://localhost/nodeappdatabase', {
     useMongoClinet: true
 });
@@ -10,14 +11,15 @@ const userSchema = new Schema({
     name: String,
     username: { type: String, required : true, unique: true},
     password: { type: String, required: true },
-    admin: Boolean
+    admin: Boolean,
+    created_at: Date,
+    updated_at:Date
 });
 
 //Tworzę model na podstawie schematu
 const User = mongoose.model('User', userSchema)
 
-//Tworzę metody dla modelu
-
+//Tworzę metody dla modelu Mongoose
 userSchema.methods.manify = function(next) {
     this.name = this.name + '-boy';
 
