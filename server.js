@@ -45,6 +45,60 @@ userSchema.pre('save', function(next){
 //Tworzę model na podstawie schematu
 const User = mongoose.model('User', userSchema);
 
+//Operacje CRUD z Mongoose. Znalezienie wszystkich rekordów w bazie
+User.find({}, function(err, res){
+    if (err) throw err;
+    console.log('Actual database records are' + res)
+})
+// to samo co wyzej tylko ES6 Promise
+const query = User.find({});
+const promise = query.exec();
+promise.then(function(records){
+    console.log('Actual database records are ' + records);
+});
+promise.catch(function(reason) {
+    console.log('Something went wrong:', reason);
+});
+
+//Znaleziesnie wybranych rekordów w bazie. (pasujących do zapytania)
+User.find({ username: 'Alpha_wolf'}).exec(function(err, res){
+    if (err) throw err;
+    console.log('Record you are looking for is ' + res);
+});
+
+//Aktualizowanie dokumentów. Tutaj hasła.
+User.find({ username: 'Alpha_wolf'}, function(err, user){
+    if (err) throw err;
+    console.log('Old password is ' + user[0].password);
+    user[0].password = 'newPassword';
+    console.log('New password is ' + user[0].password);
+
+    user[0].save(function(err) {
+        if (err) throw err;
+        console.log('Użytkownik ' + user[0].name + ' został pomyślnie zaktualizowany');
+    })
+});
+
+//Usuwanie dokumentów
+User.find({ username: 'Mark_pain_gain'}, function(err, user) {
+    if (err) throw err;
+    user = user[0];
+    user.remove(function(err) {
+        if (err) throw err;
+
+        console.log('User successfully deleted');
+    });
+});
+/* Wersja skrócona za pomocą wbudowanej metody która robi to samo (del user)
+User.findOneAndRemove({ username: 'Benny_the_man' }, function(err) {
+    if (err) throw err;
+
+    console.log('User deleted!');
+});
+ */
+
+
+/*
 // Create instances of user object
 const kamil = new User({
     name: 'Kamil',
@@ -97,3 +151,4 @@ mark.save(function(err) {
 
     console.log('Uzytkownik ' + mark.name +  ' zapisany pomyslnie');
 });
+*/
