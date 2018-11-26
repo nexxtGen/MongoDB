@@ -2,7 +2,7 @@ const mongoose = require ('mongoose');
 const Schema = mongoose.Schema; // Pobieram główny konstruktor modelu mongoose
 
 mongoose.Promise = global.Promise;
-mongoose.connect('mongodb://localhost/nodeappdatabase', {
+mongoose.connect('mongodb://nexxtGen:password1@ds117334.mlab.com:17334/database-1', {
     useNewUrlParser: true
 }); 
 
@@ -160,9 +160,9 @@ Promise.all([kamil.save(), alpha.save(), mark.save()])
     .then(findSpecificRecord)
     .then(updateUserPassword)
     .then(updateUsername)
-    //.then(findMarkAndDelete)
-    //.then(findKennyAndDelete)
-    //.then(findBennyAndRemove)
+    .then(findMarkAndDelete)
+    .then(findKennyAndDelete)
+    .then(findBennyAndRemove)
     .catch(console.log.bind(console))
 
 
