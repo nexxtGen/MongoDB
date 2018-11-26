@@ -160,9 +160,9 @@ Promise.all([kamil.save(), alpha.save(), mark.save()])
     .then(findSpecificRecord)
     .then(updateUserPassword)
     .then(updateUsername)
-    .then(findMarkAndDelete)
-    .then(findKennyAndDelete)
-    .then(findBennyAndRemove)
+    //.then(findMarkAndDelete)
+    //.then(findKennyAndDelete)
+    //.then(findBennyAndRemove)
     .catch(console.log.bind(console))
 
 
