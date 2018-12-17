@@ -5,7 +5,7 @@ const Schema = mongoose.Schema; // Pobieram główny konstruktor modelu mongoose
 var express = require('express');
 var app = express();
 
-var port = process.env.port || 8080;
+var port = process.env.port || 5000;
 app.get('/', (req, res) => res.send('This app is working!!!'));
 
 app.listen(port, function() {
