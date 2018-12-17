@@ -3,7 +3,15 @@ const Schema = mongoose.Schema; // Pobieram główny konstruktor modelu mongoose
 
 
 //Add client info. test
+var express = require('express');
+var app = express();
+
 app.get('/', (req, res) => res.send('This app is working!!!'));
+
+var port = process.env.port || 3000;
+
+app.listen(port);
+//------
 
 mongoose.Promise = global.Promise;
 mongoose.connect('mongodb://nexxtGen:password1@ds117334.mlab.com:17334/database-1', {
