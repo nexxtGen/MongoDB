@@ -1,6 +1,10 @@
 const mongoose = require ('mongoose');
 const Schema = mongoose.Schema; // Pobieram główny konstruktor modelu mongoose
 
+
+//Add client info. test
+app.get('/', (req, res) => res.send('This app is working!!!'));
+
 mongoose.Promise = global.Promise;
 mongoose.connect('mongodb://nexxtGen:password1@ds117334.mlab.com:17334/database-1', {
     useNewUrlParser: true
