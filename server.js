@@ -1,16 +1,18 @@
 const mongoose = require ('mongoose');
 const Schema = mongoose.Schema; // Pobieram główny konstruktor modelu mongoose
 
-
 //Add client info. test
 var express = require('express');
 var app = express();
 
+var port = process.env.port || 8080;
 app.get('/', (req, res) => res.send('This app is working!!!'));
 
-var port = process.env.port || 3000;
+app.listen(port, function() {
+    console.log('app is running on http://localhost:' + port);
+});
 
-app.listen(port);
+
 //------
 
 mongoose.Promise = global.Promise;
