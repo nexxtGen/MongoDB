@@ -1,17 +1,25 @@
 const mongoose = require ('mongoose');
 const Schema = mongoose.Schema; // Pobieram główny konstruktor modelu mongoose
 
-//Add client info. test
+//last test
 var express = require('express');
 var app = express();
 
-var port = process.env.port || 5000;
-app.get('/', (req, res) => res.send('This app is working!!!'));
+// set the port of our application
+var port = process.env.PORT || 8080; // process.env.PORT lets the port be set by Heroku
 
-app.listen(port, function() {
-    console.log('app is running on http://localhost:' + port);
+app.set('view engine', 'ejs'); // set the view engine to ejs
+
+app.use(express.static(__dirname + '/public')); // make express look in the public directory for assets (css/js/img)
+
+app.get('/', function(req, res) { // set the home page route
+   
+    res.render('index');  // ejs render automatically looks in the views folder
 });
 
+app.listen(port, function() {
+    console.log('Our app is running on http://localhost:' + port);
+});
 
 //------
 
